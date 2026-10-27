@@ -14,6 +14,7 @@
 ![n8n](https://img.shields.io/badge/n8n-EA4B71?logo=n8n&logoColor=white)
 ![Moyasar](https://img.shields.io/badge/Moyasar-Payments-1D4ED8)
 ![Google Places](https://img.shields.io/badge/Google_Places-4285F4?logo=googlemaps&logoColor=white)
+![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?logo=whatsapp&logoColor=white)
 ![Gmail](https://img.shields.io/badge/Gmail-EA4335?logo=gmail&logoColor=white)
 
 </div>
@@ -66,6 +67,7 @@ Naseej lets neighborhood residents request the shops and services they're missin
 | <img src="https://cdn.simpleicons.org/google" width="18"> **Google OAuth2** | Sign-in | `oauth2Login()` signs the user in. New users are created with the `PENDING` role, sent to the membership page, then issued a JWT. |
 | 💳 **Moyasar** | Payments and refunds | Moyasar's ready payment form handles Apple Pay, mada and cards, so card data never reaches our server. An opportunity is unlocked only after Moyasar's webhook confirms the payment, and refunds go through the Refund API. |
 | <img src="https://cdn.simpleicons.org/n8n" width="18"> **n8n** | Automation | Spring Boot and Moyasar trigger n8n workflows through webhooks for screening, alerts, contracts, deadlines and digests. |
+| <img src="https://cdn.simpleicons.org/whatsapp" width="18"> **WhatsApp** | Alerts | Sent by n8n: request completed, idea adopted, contract ready to sign, business opened. |
 | <img src="https://cdn.simpleicons.org/gmail" width="18"> **Gmail** | OTP codes and contracts | Connected in n8n through an OAuth2 credential from the platform's official account, so emails arrive from "Naseej" and not from a person. |
 | 🪪 **Nafath** | Investor verification | Investors must verify their identity through Nafath before they can access opportunities. |
 
@@ -281,123 +283,6 @@ Libraries load from CDNs: Leaflet 1.9.4 (map tiles © OpenStreetMap / CARTO) and
 | GET | `/unlock/agreement/{contractId}` | investor, founder, admin | The agreement behind a project |
 | GET / POST / PUT / DELETE | `/admin/users`, `/admin/users/{id}`, `/admin/users/{id}/password`, `/admin/users/{id}/suspend`, `/admin/users/{id}/reactivate` | admin | Member management |
 
-## Waleed Alaql Endpoints
-
-### Admin (2)
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `POST` | `/admin/payments/{id}/refund` | إضافي |
-| `POST` | `/admin/contracts/expire-overdue` | إضافي |
-
-### Contract (9) — منها 5 CRUD
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `GET` | `/contracts/get-all` | CRUD |
-| `POST` | `/contracts/create` | CRUD |
-| `PUT` | `/contracts/update/{id}` | CRUD |
-| `DELETE` | `/contracts/delete/{id}` | CRUD |
-| `GET` | `/contracts/get/{id}` | CRUD |
-| `POST` | `/contracts/draft` | إضافي |
-| `POST` | `/contracts/sign/{id}` | إضافي |
-| `POST` | `/contracts/terminate/{id}` | إضافي |
-| `POST` | `/contracts/add-update/{id}` | إضافي |
-
-### ContractSignature (7) — منها 5 CRUD
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `GET` | `/contract-signatures/get-all` | CRUD |
-| `POST` | `/contract-signatures/create` | CRUD |
-| `PUT` | `/contract-signatures/update/{id}` | CRUD |
-| `DELETE` | `/contract-signatures/delete/{id}` | CRUD |
-| `GET` | `/contract-signatures/get/{id}` | CRUD |
-| `POST` | `/contract-signatures/sign/{contractId}` | إضافي |
-| `GET` | `/contract-signatures/check/contract/{contractId}` | إضافي |
-
-### Notification (4)
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `GET` | `/notifications` | إضافي |
-| `GET` | `/notifications/unread-count` | إضافي |
-| `PUT` | `/notifications/read-all` | إضافي |
-| `PUT` | `/notifications/{id}/read` | إضافي |
-
-### PartnershipAgreement (7) — منها 5 CRUD
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `GET` | `/partnership-agreements/get-all` | CRUD |
-| `POST` | `/partnership-agreements/create` | CRUD |
-| `PUT` | `/partnership-agreements/update/{id}` | CRUD |
-| `DELETE` | `/partnership-agreements/delete/{id}` | CRUD |
-| `GET` | `/partnership-agreements/get/{id}` | CRUD |
-| `POST` | `/partnership-agreements/accept-terms/{id}` | إضافي |
-| `GET` | `/partnership-agreements/check/access/{accessId}` | إضافي |
-
-### Payment (13) — منها 5 CRUD
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `GET` | `/payments/get-all` | CRUD |
-| `POST` | `/payments/create` | CRUD |
-| `PUT` | `/payments/update/{id}` | CRUD |
-| `DELETE` | `/payments/delete/{id}` | CRUD |
-| `GET` | `/payments/get/{id}` | CRUD |
-| `GET` | `/payments/get-status/{id}` | إضافي |
-| `POST` | `/payments/confirm/{id}` | إضافي |
-| `POST` | `/payments/refund/{id}` | إضافي |
-| `POST` | `/payments/webhook/moyasar` | إضافي |
-| `POST` | `/payments/initiate-moyasar` | إضافي |
-| `POST` | `/payments/sync-moyasar/{id}` | إضافي |
-| `GET` | `/payments/moyasar-callback` | إضافي |
-| `GET` | `/payments/mine` | إضافي |
-
-### Project (8)
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `GET` | `/projects/mine` | إضافي |
-| `GET` | `/projects/stages` | إضافي |
-| `POST` | `/projects/stage/{contractId}` | إضافي |
-| `PUT` | `/projects/{contractId}/benefits` | إضافي |
-| `POST` | `/projects/{contractId}/sign-otp` | إضافي |
-| `POST` | `/projects/{contractId}/sign` | إضافي |
-| `POST` | `/projects/{contractId}/extend` | إضافي |
-| `GET` | `/projects/{contractId}/contract` | إضافي |
-
-### ProjectUpdate (5) — منها 5 CRUD
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `GET` | `/project-updates/get-all` | CRUD |
-| `POST` | `/project-updates/create` | CRUD |
-| `PUT` | `/project-updates/update/{id}` | CRUD |
-| `DELETE` | `/project-updates/delete/{id}` | CRUD |
-| `GET` | `/project-updates/get/{id}` | CRUD |
-
-### Subscription (3)
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `POST` | `/subscriptions/subscribe` | إضافي |
-| `GET` | `/subscriptions/mine` | إضافي |
-| `PUT` | `/subscriptions/cancel` | إضافي |
-
-### Unlock (7)
-
-| Method | Endpoint | النوع |
-|---|---|---|
-| `POST` | `/unlock/pay/{ideaId}` | إضافي |
-| `POST` | `/unlock/checkout/{ideaId}` | إضافي |
-| `POST` | `/unlock/confirm-payment/{ideaId}` | إضافي |
-| `POST` | `/unlock/partnership/{ideaId}` | إضافي |
-| `POST` | `/unlock/owner-checkout/{ideaId}` | إضافي |
-| `POST` | `/unlock/owner-confirm/{ideaId}` | إضافي |
-| `GET` | `/unlock/agreement/{contractId}` | إضافي |
-
 **Contract flow after adoption:** unlocking or adopting creates a `DRAFT` contract → the investor signs → `ACTIVE` right away, and the 180-day opening deadline starts. The idea owner doesn't sign and gets no discount; they're notified when the contract is active. The investor must sign within 14 days of the purchase. Once, in the last 30 days before the opening deadline, an investor who posted progress in the last 30 days can extend it by 60 days (`POST /projects/{contractId}/extend`); progress can also be posted on the current stage with a note. An investor who adopts their own idea skips the benefits step and signs once. A contract that isn't signed or doesn't open by its deadline is terminated and the idea goes back to the other investors (`COMPLETED`) or back to voting (`PUBLISHED`).
 
 The raw CRUD and AI endpoints (`/ideas/**`, `/payments/**`, `/contracts/**`, …) take user ids in the request body, so they are now **admin only**; the website uses the endpoints above, which read the user from the token.
@@ -422,7 +307,7 @@ The raw CRUD and AI endpoints (`/ideas/**`, `/payments/**`, `/contracts/**`, …
       <a href="https://github.com/AmiraAldajani"><img src="https://github.com/AmiraAldajani.png" width="100" alt="Member"><br><b>Amira Aldajani</b></a><br>
       <sub><img src="https://cdn.simpleicons.org/anthropic" width="16"> AI feature</sub><br><br>
       IdeaCheck, BusinessModel, OpportunityAccess, FeasibilityReport, NearbyPlace<br><br>
-      <b>0</b> extra endpoints
+      <b>41</b> extra endpoints
     </td>
   </tr>
 </table>
@@ -443,6 +328,55 @@ The raw CRUD and AI endpoints (`/ideas/**`, `/payments/**`, `/contracts/**`, …
 | `POST` | `/v1/api/auth/logout` | Log out |
 | `GET` | `/oauth2/authorization/google` | Start Google sign-in |
 | `PUT` | `/v1/api/auth/select-role` | Choose resident or investor after Google sign-in |
+
+</details>
+
+<details open>
+<summary>&nbsp;<b>My Extra Endpoints</b> (41)</summary>
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `PUT` | `/business-models/revise-by-chat/{id}` | Revise a business model from a chat message (Claude rewrites it) |
+| `POST` | `/business-models/generate/{ideaId}` | Generate the AI business model for an idea |
+| `GET` | `/business-models/get-by-idea/{ideaId}` | Get the business model of an idea |
+| `GET` | `/business-models/search-by-capital` | Business models within a maximum capital (`?max=`) |
+| `GET` | `/discover/map` | Ideas on the map around the logged-in user |
+| `GET` | `/discover/idea/{id}` | Idea page details |
+| `GET` | `/discover/my-ideas` | The user's own ideas |
+| `POST` | `/discover/propose` | Propose a new idea (runs the AI check) |
+| `PUT` | `/discover/draft/{id}` | Edit and recheck a draft or an idea that didn't pass |
+| `POST` | `/discover/publish/{id}` | Publish a draft that passed the AI check |
+| `DELETE` | `/discover/draft/{id}` | Drop a draft before publishing |
+| `POST` | `/discover/retry-ai/{id}` | Run the AI check again on an idea |
+| `POST` | `/discover/vote/{id}` | Vote for an idea as a founding member |
+| `DELETE` | `/discover/vote/{id}` | Take a vote back while the idea is still collecting votes |
+| `GET` | `/discover/my-votes` | Ideas the resident voted for |
+| `PUT` | `/discover/idea/{id}` | Founder edits a published idea |
+| `DELETE` | `/discover/idea/{id}` | Founder withdraws or deletes an idea |
+| `PUT` | `/discover/idea/{id}/business-model/chat` | Founder changes the business model in their own words |
+| `POST` | `/explore/ask` | Ask the AI in plain words → filters + matching opportunities |
+| `GET` | `/explore/opportunities/{neighborhoodId}` | Opportunities in a neighborhood |
+| `GET` | `/explore/search` | Search by words, city, category and max capital |
+| `GET` | `/explore/rising` | Requests that gained the most votes in the last days |
+| `GET` | `/explore/top` | Strongest opportunities |
+| `GET` | `/explore/match` | Matches by city, neighborhood and budget range |
+| `POST` | `/explore/ai-search` | AI search with a reason for each result |
+| `POST` | `/feasibility-reports/generate/{ideaId}` | Generate the AI feasibility study for an idea |
+| `GET` | `/feasibility-reports/preview/{ideaId}` | Short feasibility preview before unlocking |
+| `GET` | `/feasibility-reports/get-full/{ideaId}` | Full feasibility report for an investor who unlocked the idea |
+| `POST` | `/idea-checks/run/{ideaId}` | Run the AI screening on an idea |
+| `GET` | `/idea-checks/get-by-idea/{ideaId}` | Get the screening result of an idea |
+| `GET` | `/idea-checks/get-by-decision/{decision}` | Checks by decision (`SUITABLE`, `SIMILAR_EXISTS`, `SATURATED`) |
+| `GET` | `/nearby-places/get-by-idea/{ideaId}` | Competitors found near an idea |
+| `GET` | `/nearby-places/count-by-idea/{ideaId}` | Count competitors within a radius (`?radiusKm=`, default 2) |
+| `POST` | `/nearby-places/refresh/{ideaId}` | Refresh nearby places from Google Places |
+| `POST` | `/opportunity-access/unlock` | Unlock an opportunity for an investor |
+| `GET` | `/opportunity-access/check` | Check whether an investor has access to an idea |
+| `GET` | `/opportunity-access/get-by-investor/{investorId}` | Opportunities an investor unlocked |
+| `GET` | `/opportunity-access/count-by-idea/{ideaId}` | How many investors unlocked an idea |
+| `GET` | `/unlock/quote/{ideaId}` | AI-priced unlock quote |
+| `POST` | `/unlock/adopt/{ideaId}` | Adopt the investor's own idea with no fee |
+| `GET` | `/unlock/owner-terms/{ideaId}` | Service agreement terms for launching the owner's own idea |
 
 </details>
 
